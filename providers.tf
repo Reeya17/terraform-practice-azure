@@ -1,12 +1,10 @@
 terraform {
     required_providers {
         azurerm = {
-            alias   = "az"
             source  = "hashicorp/azurerm"
             version = "3.0.0"
         }
         aws = {
-            alias   = "aw"
             source  = "hashicorp/aws"
             version = "3.0.0"
         } 
