@@ -2,24 +2,10 @@ terraform {
     required_providers {
         azurerm = {
             source  = "hashicorp/azurerm"
-            version = "3.0.0"
+            version = "~>3.0.0"
         }
-        aws = {
-            source  = "hashicorp/aws"
-            version = "3.0.0"
-        } 
     }
-}
-
-provider "aws" {
-  alias  = "aws-us-west-2"
-  region = "us-west-2"
-  
-}
-provider "aws" {
-  alias  = "aws-us-east-1"
-  region = "us-east-1"
-  
+    required_version = ">= 1.0.0"
 }
 
 

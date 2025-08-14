@@ -1,12 +1,3 @@
-variable "prefix" {
-  default = "tfvmex"
-}
-
-resource "azurerm_resource_group" "example" {
-  name     = "${var.prefix}-resources"
-  location = "westeurope"
-}
-
 resource "azurerm_virtual_network" "main" {
   name                = "${var.prefix}-network"
   address_space       = ["10.0.0.0/16"]
@@ -27,7 +18,9 @@ resource "azurerm_public_ip" "example" {
   allocation_method   = "Static"
   sku                 = "Standard"
   tags = {
-    environment = "staging"
+    environment = local.common_tags.environment
+    lob         = local.common_tags.lob
+    project     = local.common_tags.project
   }
 }
 resource "azurerm_network_interface" "main" {
@@ -49,7 +42,7 @@ resource "azurerm_virtual_machine" "main" {
   location              = azurerm_resource_group.example.location
   resource_group_name   = azurerm_resource_group.example.name
   network_interface_ids = [azurerm_network_interface.main.id]
-  vm_size               = "Standard_B1s"
+  vm_size               = var.vm_size
   delete_os_disk_on_termination = true
   delete_data_disks_on_termination = true
 
@@ -63,18 +56,19 @@ resource "azurerm_virtual_machine" "main" {
     name              = "myosdisk1"
     caching           = "ReadWrite"
     create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+    managed_disk_type = var.managed_disk_type
   }
   os_profile {
-    computer_name  = "hostname"
-    admin_username = "testadmin"
-    admin_password = "Password1234!"
+    computer_name  = var.computer_name
+    admin_username = var.admin_username
+    admin_password = var.admin_password
   }
   os_profile_linux_config {
     disable_password_authentication = false
   }
   tags = {
-    environment = "staging"
+    environment = var.environment
   }
   
 }
+
