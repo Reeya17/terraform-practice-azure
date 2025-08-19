@@ -1,15 +1,23 @@
+variable "storage_account_name" {
+  description = "The name of the Azure Storage Account"
+  type        = set(string)
+  default     = ["riya1888pp", "riya231888oo", "riya348888oo"]
+}
 variable "num" {
   description = "version number for the resource"
   type        = number
   default     = 1 
 }
-# Map is for key pairs values.
+# Map is for key pairs values (unique values).
 variable "resource_tags" {
   description = "Tags to be applied to all resources"
   type        = map(string)
   default     = {
+
     version     = "1.0"
-    owner       = "admin"
+    environment = "development"
+    project     = "Terraform Practice"
+    owner       = "Riya"
   }
   
 }
@@ -52,7 +60,7 @@ variable "prefix" {
 variable "environment" {
   description = "The environment for the resources"
   type        = string
-  default     = "staging"
+  default     = "development"
 }
 variable "allowed_locations" {
   description = "List of allowed Azure locations for resource deployment"
@@ -62,7 +70,7 @@ variable "allowed_locations" {
 variable "location" {
   description = "The Azure region where resources will be created"
   type        = string
-  default = "westeurope"
+  default = "eastus"
 }
 variable "computer_name" {
   description = "The name of the virtual machine"
