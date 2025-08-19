@@ -11,7 +11,7 @@ resource "azurerm_resource_group" "example" {
     # }
   }
   tags = {
-    environment = var.environment
+    environment = var.environment == "development" ? "Development" : var.environment
     project     = var.resource_tags["project"]
     owner       = var.resource_tags["owner"]
   }

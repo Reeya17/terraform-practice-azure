@@ -27,3 +27,6 @@ resource "azurerm_storage_account" "saname" {
     # prevent_destroy = true
     }
 }
+output "sa_information" {
+  value = [for i in azurerm_storage_account.saname : i.name]
+}

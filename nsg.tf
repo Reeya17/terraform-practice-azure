@@ -36,3 +36,12 @@ resource "azurerm_subnet_network_security_group_association" "name" {
   subnet_id               = azurerm_subnet.internal.id
   network_security_group_id = azurerm_network_security_group.example.id
 }
+output "nsg_rules_destination_port_ranges" {
+  value = [for i in local.nsg_rules: i.destination_port_range ]
+  description = "List of NSG rules destination port ranges"
+}
+output "splat-operator_nsg_rules" {
+  value = local.nsg_rules[*].name
+  description = "List of NSG rules names using splat operator"
+  
+}
