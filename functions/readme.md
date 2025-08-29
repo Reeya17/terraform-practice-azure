@@ -6,8 +6,40 @@ Practice these fundamental commands in terraform console before starting the ass
 lower("HELLO WORLD")
 max(5, 12, 9)
 trim("  hello  ")
+"""
+> trim("I am werll ", "l")
+"I am werll "
+> trim("I am werll ", "ll")
+"I am werll "
+> trim("I am werll ", "ll ")
+"I am wer"
+> trim("I am werll ", "l ")
+"I am wer"
+
+
+"""
 chomp("hello\n")
+"""
+> chomp("helloo\n")
+"helloo"
+> chomp("helloo")
+"helloo"
+> chomp("helloo\t")
+"helloo\t"
+
+"""
+
+
 reverse(["a", "b", "c"])
+
+"""
+> reverse(["g","a","z"])
+[
+  "z",
+  "a",
+  "g",
+]
+"""
 Assignments
 Assignment 1: Project Naming Convention
 Functions Focus: lower, replace
